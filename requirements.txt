@@ -1,5 +1,4 @@
 Django==3.2.12
-psycopg2==2.9.3
 django-cors-headers>=3.11.0
 requests>=2.27.1
 django-filter==22.1
@@ -22,6 +21,7 @@ django-extensions==3.2.1
 django-apscheduler == 0.6.2
 pandas==1.5.1
 openpyxl==3.0.10
+psycopg2==2.9.3
 
 
 
