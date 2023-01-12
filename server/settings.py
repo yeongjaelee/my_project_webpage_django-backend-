@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "graphene_django",
     "corsheaders", 
-    'qna'
+    'qna',
+    'login'
 ]
 
 
@@ -56,7 +57,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
-
+AUTH_USER_MODEL = 'login.User'
 
 ROOT_URLCONF = 'server.urls'
 
