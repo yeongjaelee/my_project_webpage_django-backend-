@@ -10,7 +10,11 @@ class Query(graphene.ObjectType):
 
     @staticmethod
     def resolve_user(_, __, identification):
-        return User.objects.get(identification=identification)
+        try:
+            user = User.objects.get(identification=identification)
+        except:
+            user = None
+        return user
 
 
 schema = graphene.Schema(query=Query)
