@@ -1,7 +1,14 @@
+import datetime
+
 import graphene
+import graphql_jwt
+import jwt
 from graphene_django.filter import DjangoFilterConnectionField
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.response import Response
 
 from login.models import User
+from login.mutations.user_register import UserRegister
 from login.types.user_type import UserType
 
 
@@ -10,11 +17,17 @@ class Query(graphene.ObjectType):
 
     @staticmethod
     def resolve_user(_, __, identification):
-        try:
-            user = User.objects.get(identification=identification)
-        except:
-            user = None
+        user = User.objects.get(identification=identification)
+        if user is None:
+            raise AuthenticationFailed('user not found !')
+
         return user
 
 
-schema = graphene.Schema(query=Query)
+class Mutation(graphene.ObjectType):
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    verify_token = graphql_jwt.Verify.Field()
+    refresh_token = graphql_jwt.Refresh.Field()
+    user_register = UserRegister.Field()
+
+schema = graphene.Schema(query=Query, mutation=Mutation)

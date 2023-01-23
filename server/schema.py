@@ -8,7 +8,8 @@ class Query(qna.schema.Query,
     pass
 
 
-class Mutation(qna.schema.Mutation):
+class Mutation(qna.schema.Mutation,
+               login.schema.Mutation):
     pass
 
 

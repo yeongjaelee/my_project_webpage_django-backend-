@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -15,7 +16,10 @@ SECRET_KEY = 'django-insecure-u9yju(nrqft9_4hx-rdt=ryi6cx7y&=*_h5(d*38tt#@)9wd$5
 DEBUG = True
 
 GRAPHENE = {
-    "SCHEMA": "server.schema.schema"
+    "SCHEMA": "server.schema.schema",
+    "MIDDLEWARE": [
+        "graphql_jwt.middleware.JSONWebTokenMiddleware",
+    ],
 }
 
 ALLOWED_HOSTS = ['*']
@@ -112,7 +116,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+AUTHENTICATION_BACKENDS = [
+    "graphql_jwt.backends.JSONWebTokenBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 
+GRAPHQL_JWT = {
+    "JWT_ALLOW_ARGUMENT": True,
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_EXPIRATION_DELTA": timedelta(minutes=1000),
+    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=1000),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
