@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     "graphene_django",
     "corsheaders", 
     'qna',
-    'login'
+    'login',
+    'board'
 ]
 
 

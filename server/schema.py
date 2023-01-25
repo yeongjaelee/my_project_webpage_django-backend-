@@ -1,10 +1,12 @@
 import graphene
 
+import board.schema
 import login.schema
 import qna.schema
 
 class Query(qna.schema.Query,
-            login.schema.Query):
+            login.schema.Query,
+            board.schema.Query):
     pass
 
 
