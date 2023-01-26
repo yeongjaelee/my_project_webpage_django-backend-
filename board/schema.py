@@ -2,6 +2,7 @@ import graphene
 from graphene_django.filter import DjangoFilterConnectionField
 
 from board.models import Board
+from board.mutations.board_create import BoardCreate
 from board.types.board_node import BoardNode
 
 
@@ -13,9 +14,9 @@ class Query(graphene.ObjectType):
         return Board.objects.all()
 
 
+class Mutation(graphene.ObjectType):
+    board_create = BoardCreate.Field()
 
-#class Mutation(graphene.ObjectType):
 
 
-
-schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=Query, mutation=Mutation)

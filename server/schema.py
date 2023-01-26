@@ -11,7 +11,8 @@ class Query(qna.schema.Query,
 
 
 class Mutation(qna.schema.Mutation,
-               login.schema.Mutation):
+               login.schema.Mutation,
+               board.schema.Mutation):
     pass
 
 
