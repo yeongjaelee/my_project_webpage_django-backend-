@@ -1,11 +1,12 @@
 import graphene
+from graphene_django.filter import DjangoFilterConnectionField
 
 from board.models import Board
-from board.types.board_type import BoardType
+from board.types.board_node import BoardNode
 
 
 class Query(graphene.ObjectType):
-    board = graphene.List(BoardType)
+    board = DjangoFilterConnectionField(BoardNode)
 
     @staticmethod
     def resolve_board(_,__):
