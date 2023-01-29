@@ -9,7 +9,7 @@ class BoardCreate(graphene.Mutation):
         identification = graphene.String()
         title = graphene.String()
         content = graphene.String()
-        is_hided = graphene.Boolean(default_value=False)
+        is_hided = graphene.Boolean()
 
     success = graphene.Boolean()
 
@@ -17,7 +17,6 @@ class BoardCreate(graphene.Mutation):
     def mutate(cls, _, info, title, content, is_hided, identification):
         print(1)
         user = User.objects.get(identification=identification)
-        print(user)
         Board.objects.create(user=user,
                              title=title,
                              content=content,
