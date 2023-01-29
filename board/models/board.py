@@ -4,7 +4,7 @@ from login.models import User
 
 
 class Board(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='boards')
     title = models.CharField(max_length=30)
     content = models.TextField()
     is_hided = models.BooleanField(default=False)

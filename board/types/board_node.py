@@ -14,7 +14,11 @@ class BoardNode(DjangoObjectType):
         #connection_class = CountableConnectionBase
 
     total_count = graphene.String()
-
+    board_id = graphene.Int()
     @staticmethod
     def resolve_total_count(_, __):
         return Board.objects.all().count()
+
+    @staticmethod
+    def resolve_board_id(root,_):
+        return root.id

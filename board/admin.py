@@ -4,4 +4,5 @@ from board.models import Board
 
 @admin.register(Board)
 class BoardAdmin(admin.ModelAdmin):
+    list_display = ('id','title')
     pass
