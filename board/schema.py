@@ -12,13 +12,15 @@ class Query(graphene.ObjectType):
     board = DjangoFilterConnectionField(BoardNode)
     my_board = DjangoFilterConnectionField(BoardNode, identification=graphene.String())
     board_detail = graphene.Field(BoardType, board_id=graphene.Int())
+    """
     @staticmethod
     def resolve_board(_,__):
         return Board.objects.all()
-    @staticmethod
-    def resolve_my_board(_, __, identification):
-        user = User.objects.get(identification=identification)
-        return Board.objects.filter(user=user)
+        """
+    # @staticmethod
+    # def resolve_my_board(_, __, identification, ):
+    #     user = User.objects.get(identification=identification)
+    #     return Board.objects.filter(user=user)
     @staticmethod
     def resolve_board_detail(_, __, board_id):
         return Board.objects.get(id=board_id)
