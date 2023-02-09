@@ -5,6 +5,7 @@ from board.fields.my_board_fields import MyBoardField
 from board.models import Board
 from board.mutations.board_create import BoardCreate
 from board.mutations.board_delete import BoardDelete
+from board.mutations.board_update import BoardUpdate
 from board.types.board_node import BoardNode
 from board.types.board_type import BoardType
 from login.models import User
@@ -22,6 +23,6 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.ObjectType):
     board_create = BoardCreate.Field()
     board_delete = BoardDelete.Field()
-
+    board_update = BoardUpdate.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

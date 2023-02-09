@@ -9,6 +9,7 @@ from rest_framework.response import Response
 
 from login.models import User
 from login.mutations.delete_user import DeleteUser
+from login.mutations.update_user_info import UpdateUserInfo
 from login.mutations.user_register import UserRegister
 from login.types.user_type import UserType
 
@@ -31,6 +32,6 @@ class Mutation(graphene.ObjectType):
     refresh_token = graphql_jwt.Refresh.Field()
     user_register = UserRegister.Field()
     delete_user = DeleteUser.Field()
-
+    update_user_info = UpdateUserInfo.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
