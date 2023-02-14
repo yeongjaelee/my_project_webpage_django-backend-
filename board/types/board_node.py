@@ -11,7 +11,7 @@ class BoardNode(DjangoObjectType):
         model = Board
         interfaces = (relay.Node,)
         filter_fields = []
-        #connection_class = CountableConnectionBase
+        # connection_class = CountableConnectionBase
 
     total_count = graphene.String()
     board_id = graphene.Int()

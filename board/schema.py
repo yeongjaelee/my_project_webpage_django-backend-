@@ -19,6 +19,7 @@ class Query(graphene.ObjectType):
 
     @staticmethod
     def resolve_board_detail(_, __, board_id):
+        print(board_id)
         return Board.objects.get(id=board_id)
 
 class Mutation(graphene.ObjectType):

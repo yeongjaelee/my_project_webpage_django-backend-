@@ -9,6 +9,7 @@ from rest_framework.response import Response
 
 from login.models import User
 from login.mutations.delete_user import DeleteUser
+from login.mutations.update_password import UpdatePassword
 from login.mutations.update_user_info import UpdateUserInfo
 from login.mutations.user_register import UserRegister
 from login.types.user_type import UserType
@@ -19,10 +20,7 @@ class Query(graphene.ObjectType):
 
     @staticmethod
     def resolve_user(_, __, identification):
-        user = User.objects.get(identification=identification)
-        if user is None:
-            raise AuthenticationFailed('user not found !')
-
+        user = User.objects.filter(identification=identification).first()
         return user
 
 
@@ -33,5 +31,6 @@ class Mutation(graphene.ObjectType):
     user_register = UserRegister.Field()
     delete_user = DeleteUser.Field()
     update_user_info = UpdateUserInfo.Field()
+    update_password = UpdatePassword.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

@@ -11,20 +11,19 @@ class BoardCreate(graphene.Mutation):
         title = graphene.String()
         content = graphene.String()
         is_hided = graphene.Boolean()
-        file = Upload()
+        image = Upload()
 
     success = graphene.Boolean()
 
     @classmethod
-    def mutate(cls, _, info, title, content, is_hided, identification, file):
+    def mutate(cls, _, info, title, content, is_hided, identification, image):
         print(1)
         user = User.objects.get(identification=identification)
         print(title)
-        print(file)
         Board.objects.create(user=user,
                              title=title,
                              content=content,
                              is_hided=is_hided,
-                             file=file)
+                             image=image)
 
         return BoardCreate(success=True)

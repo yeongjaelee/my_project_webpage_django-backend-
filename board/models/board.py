@@ -9,4 +9,5 @@ class Board(models.Model):
     content = models.TextField()
     is_hided = models.BooleanField(default=False)
     file = models.FileField(upload_to='files', null=True, blank=True)
+    image = models.ImageField(upload_to='files', null=True, blank=True)
     date_created = models.DateField(auto_now_add=True)
