@@ -2,7 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from graphene import relay
 
-from base import CountableConnectionBase
+from base.count_relay_base import CountRelayBase
 from board.models import Board
 
 
@@ -11,14 +11,9 @@ class BoardNode(DjangoObjectType):
         model = Board
         interfaces = (relay.Node,)
         filter_fields = []
-        # connection_class = CountableConnectionBase
+        connection_class = CountRelayBase
 
-    total_count = graphene.String()
     board_id = graphene.Int()
-    @staticmethod
-    def resolve_total_count(_, __):
-        return Board.objects.all().count()
-
     @staticmethod
     def resolve_board_id(root,_):
         return root.id

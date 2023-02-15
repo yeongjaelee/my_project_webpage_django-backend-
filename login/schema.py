@@ -21,6 +21,7 @@ class Query(graphene.ObjectType):
     @staticmethod
     def resolve_user(_, __, identification):
         user = User.objects.filter(identification=identification).first()
+        print(user)
         return user
 
 
