@@ -14,7 +14,7 @@ from login.models import User
 
 class Query(graphene.ObjectType):
     board = DjangoFilterConnectionField(BoardNode)
-    my_board = MyBoardField(BoardNode, identification=graphene.String())
+    my_board = MyBoardField(BoardNode, token=graphene.String())
     board_detail = graphene.Field(BoardType, board_id=graphene.Int())
 
     @staticmethod

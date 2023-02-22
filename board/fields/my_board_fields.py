@@ -14,6 +14,6 @@ class MyBoardField(DjangoFilterConnectionField):
         qs = filterset_class(data=filter_kwargs, queryset=qs, request=info.context).qs
         board_list = []
         for q in qs:
-            if q.user.identification == args['identification']:
+            if q.user.fcm_token == args['token']:
                 board_list.append(q)
         return board_list
