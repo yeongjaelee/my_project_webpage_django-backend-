@@ -8,13 +8,14 @@ class UserRegister(graphene.Mutation):
         identification = graphene.String()
         username = graphene.String()
         password = graphene.String()
-
+        address = graphene.String()
     success = graphene.Boolean()
 
     @classmethod
-    def mutate(cls, _, __, identification, username, password):
+    def mutate(cls, _, __, identification, username, password, address):
         User.objects.create_user(identification=identification,
                                  username=username,
-                                 password=password)
+                                 password=password,
+                                 address=address)
 
         return UserRegister(success=True)

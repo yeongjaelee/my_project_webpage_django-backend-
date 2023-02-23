@@ -10,6 +10,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     identification = models.CharField(max_length=20, unique=True)
     date_created = models.DateTimeField(auto_now=True)
     email = models.EmailField(null=True)
+    address = models.CharField(max_length=100, null=True)
+
     fcm_token = models.CharField(max_length=255, null=True, blank=True)
     fcm_tokens = ArrayField(models.CharField(max_length=255), blank=True, default=list)
 
